@@ -111,7 +111,7 @@ body {
 
 .portfolio-viewport.is-visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
 }
 
 @keyframes loaderSlide {
@@ -156,7 +156,8 @@ button {
 .site-shell {
   position: relative;
   min-height: 100vh;
-  overflow: hidden;
+  padding-top: 78px;
+  overflow-x: hidden;
   background:
     radial-gradient(
       circle at 50% -10%,
@@ -229,14 +230,14 @@ button {
 
 .site-nav {
   position: fixed;
-
   top: 0;
   left: 0;
   right: 0;
-
   z-index: 100;
-
+  background: transparent;
   border-bottom: 1px solid transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
 
   transition:
     background 0.3s ease,
@@ -245,11 +246,10 @@ button {
 }
 
 .site-nav.is-scrolled {
-  background: rgba(5, 8, 22, 0.78);
-
+  background: rgba(5, 8, 22, 0.9);
   border-color: var(--border);
-
   backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
 }
 
 .nav-inner {
@@ -952,14 +952,14 @@ button {
 
 .site-nav {
   position: fixed;
-
   top: 0;
   left: 0;
   right: 0;
-
   z-index: 100;
-
+  background: transparent;
   border-bottom: 1px solid transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
 
   transition:
     background 0.3s ease,
@@ -968,11 +968,10 @@ button {
 }
 
 .site-nav.is-scrolled {
-  background: rgba(5, 8, 22, 0.78);
-
+  background: rgba(5, 8, 22, 0.9);
   border-color: var(--border);
-
   backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
 }
 
 .nav-inner {
@@ -1676,6 +1675,9 @@ button {
         ========================================= */
 
 .site-nav {
+  position: fixed !important;
+  top: 0;
+  width: 100%;
   padding: 0 28px;
 }
 
@@ -4152,37 +4154,29 @@ a.contact-detail:hover {
 
 .modal-backdrop {
   position: fixed;
-
   inset: 0;
-
-  z-index: 500;
-
-  display: grid;
-  place-items: center;
-
+  z-index: 5000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 25px;
-
   background: rgba(2, 5, 14, 0.88);
-
   backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  pointer-events: auto;
 }
 
 .certificate-modal {
   position: relative;
-
-  width: min(900px, 100%);
-
+  z-index: 5001;
+  width: min(900px, 92vw);
   max-height: 90vh;
-
   overflow: auto;
-
   border: 1px solid var(--border-bright);
-
   border-radius: 18px;
-
   background: #080d1d;
-
   box-shadow: 0 40px 120px rgba(0, 0, 0, 0.5);
+  pointer-events: auto;
 }
 
 .modal-close {

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { createPortal } from "react-dom";
 
 import {
   ArrowUpRight,
@@ -980,64 +981,66 @@ export default function PortfolioShell() {
           CERTIFICATE MODAL
       ========================================= */}
 
-      <AnimatePresence>
-        {selectedCertificate && (
-          <motion.div
-            className="modal-backdrop"
-            role="dialog"
-            aria-modal="true"
-            aria-label={selectedCertificate.title}
-            onClick={() => setSelectedCertificate(null)}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-          >
+      {selectedCertificate &&
+        createPortal(
+          <AnimatePresence>
             <motion.div
-              className="certificate-modal"
-              onClick={(event) => event.stopPropagation()}
-              initial={{
-                opacity: 0,
-                y: 25,
-                scale: 0.96,
-              }}
-              animate={{
-                opacity: 1,
-                y: 0,
-                scale: 1,
-              }}
-              exit={{
-                opacity: 0,
-                y: 25,
-                scale: 0.96,
-              }}
-              transition={{
-                duration: 0.3,
-              }}
+              className="modal-backdrop"
+              role="dialog"
+              aria-modal="true"
+              aria-label={selectedCertificate.title}
+              onClick={() => setSelectedCertificate(null)}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
             >
-              <button
-                className="modal-close"
-                onClick={() => setSelectedCertificate(null)}
-                aria-label="Close certificate"
+              <motion.div
+                className="certificate-modal"
+                onClick={(event) => event.stopPropagation()}
+                initial={{
+                  opacity: 0,
+                  y: 25,
+                  scale: 0.96,
+                }}
+                animate={{
+                  opacity: 1,
+                  y: 0,
+                  scale: 1,
+                }}
+                exit={{
+                  opacity: 0,
+                  y: 25,
+                  scale: 0.96,
+                }}
+                transition={{
+                  duration: 0.3,
+                }}
               >
-                <X size={20} />
-              </button>
+                <button
+                  className="modal-close"
+                  onClick={() => setSelectedCertificate(null)}
+                  aria-label="Close certificate"
+                >
+                  <X size={20} />
+                </button>
 
-              <div className="modal-image">
-                <PlaceholderImage
-                  src={selectedCertificate.image}
-                  alt={selectedCertificate.title}
-                />
-              </div>
+                <div className="modal-image">
+                  <PlaceholderImage
+                    src={selectedCertificate.image}
+                    alt={selectedCertificate.title}
+                  />
+                </div>
 
-              <div className="modal-caption">
-                <span>{selectedCertificate.organization}</span>
+                <div className="modal-caption">
+                  <span>{selectedCertificate.organization}</span>
 
-                <h3>{selectedCertificate.title}</h3>
-              </div>
+                  <h3>{selectedCertificate.title}</h3>
+                </div>
+              </motion.div>
             </motion.div>
-          </motion.div>
+          </AnimatePresence>,
+          document.body,
         )}
-      </AnimatePresence>
     </div>
   );
 }

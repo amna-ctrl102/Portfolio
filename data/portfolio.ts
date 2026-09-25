@@ -125,6 +125,6 @@ export const certificates = [
   {
     title: "AI Fluency Certificate",
     organization: "Anthropic Academy",
-    image: "/Assests/AI Fluency.png",
+    image: "/Assests/AI%20Fluency.png",
   },
 ];

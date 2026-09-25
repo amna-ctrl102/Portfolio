@@ -1,7 +1,5 @@
+import PortfolioPage from "@/components/portfolio-page";
+
 export default function Home() {
-  return (
-    <main>
-      <div>Hello world!</div>
-    </main>
-  );
+  return <PortfolioPage />;
 }
